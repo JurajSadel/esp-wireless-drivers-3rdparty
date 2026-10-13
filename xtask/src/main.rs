@@ -135,6 +135,28 @@ fn main() {
         &format!("{idf_path}/components/esp_common/include/esp_types.h"),
         &format!("{dst}/esp_types.h"),
     );
+    copy_file(
+        &format!("{idf_path}/components/esp_common/include/esp_assert.h"),
+        &format!("{dst}/esp_assert.h"),
+    );
+    copy_file(
+        &format!("{idf_path}/components/esp_hw_support/etm/include/esp_etm.h"),
+        &format!("{dst}/esp_etm.h"),
+    );
+    copy_file(
+        &format!("{idf_path}/components/hal/include/hal/etm_types.h"),
+        &format!("{dst}/hal/etm_types.h"),
+    );
+    copy_file(
+        &format!("{idf_path}/components/bt/host/nimble/nimble/nimble/include/nimble/nimble_npl.h"),
+        &format!("{dst}/nimble/nimble_npl.h"),
+    );
+    copy_file(
+        &format!(
+            "{idf_path}/components/bt/host/nimble/nimble/porting/npl/dummy/include/nimble/nimble_npl_os.h"
+        ),
+        &format!("{dst}/nimble/nimble_npl_os.h"),
+    );
 
     copy_file(
         &format!("{idf_path}/components/esp_hal_pmu/include/hal/pmu_types.h"),
