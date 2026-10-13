@@ -624,6 +624,7 @@ fn copy_file(from: &str, to: &str) {
         windows_safe_path(&cwd.join(to)),
     )
     .expect(&format!("Unable to copy {from} to {to}"));
+    set_file_mode(&windows_safe_path(&cwd.join(to)));
 }
 
 fn copy_files(from: &str, to: &str) {
@@ -650,8 +651,19 @@ fn copy_files(from: &str, to: &str) {
             windows_safe_path(&cwd.join(to).join(&fname)),
         )
         .expect("Unable to copy sdkconfig.defaults");
+        set_file_mode(&windows_safe_path(&cwd.join(to).join(&fname)));
     }
 }
+
+/// Some ESP-IDF blobs carry the executable bit, which `fs::copy` would carry over.
+#[cfg(unix)]
+fn set_file_mode(path: &Path) {
+    use std::os::unix::fs::PermissionsExt;
+    fs::set_permissions(path, fs::Permissions::from_mode(0o644)).unwrap();
+}
+
+#[cfg(not(unix))]
+fn set_file_mode(_path: &Path) {}
 
 fn build(cwd: &str, args: &[&str]) {
     let mut adapted_args = Vec::new();
