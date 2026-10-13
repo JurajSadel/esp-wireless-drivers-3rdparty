@@ -553,7 +553,7 @@ fn process(chip: &str) {
         &format!("{dst}/soc/reg_base.h"),
     );
 
-    let soc_pmu_supported = ["esp32c6", "esp32h2", "esp32s31", "esp32h4"].contains(&chip);
+    let soc_pmu_supported = ["esp32c6", "esp32h2", "esp32s31", "esp32h4", "esp32c5", "esp32c61"].contains(&chip);
     if soc_pmu_supported {
         copy_file(
             &format!("{idf_path}/components/esp_hal_pmu/{chip}/include/hal/pmu_hal.h"),
@@ -585,7 +585,7 @@ fn process(chip: &str) {
         );
     }
 
-    let modem_lock_is_independent = ["esp32c6", "esp32h2", "esp32s31", "esp32h4"].contains(&chip);
+    let modem_lock_is_independent = ["esp32c6", "esp32h2", "esp32s31", "esp32h4", "esp32c5", "esp32c61"].contains(&chip);
     if modem_lock_is_independent {
         copy_file(
             &format!("{idf_path}/components/soc/{chip}/include/modem/modem_syscon_struct.h"),
