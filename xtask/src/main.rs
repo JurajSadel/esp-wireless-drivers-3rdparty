@@ -534,13 +534,6 @@ fn process(chip: &str) {
         );
     }
 
-    if chip == "esp32c2" || chip == "esp32c6" || chip == "esp32h2" {
-        copy_file(
-            &format!("{idf_path}/components/bt/controller/{chip}/esp_bt_cfg.h"),
-            &format!("{dst}/esp_bt_cfg.h"),
-        );
-    }
-
     if chip == "esp32s31" || chip == "esp32h4" {
         copy_file(
             &format!(
